@@ -1,0 +1,35 @@
+@import '../../index.scss';
+
+.form_input_container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 100%;
+
+    .label_input {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: normal;
+        color: $primary;
+        position: relative;
+        top: 10px;
+        left: 10px;
+    }
+
+    .form_input {
+        height: 28px;
+        padding: 6px;
+        border: none;
+        border-bottom: 2px solid $primary;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

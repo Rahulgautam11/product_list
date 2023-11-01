@@ -1,0 +1,148 @@
+@import'../../index.scss';
+
+.Productlist_main {
+
+    .table_main {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+
+        .table_header {
+
+            tr {
+                background-color: rgba(243, 242, 243, 0.8);
+
+                th {
+                    padding: 10px;
+                    position: relative;
+
+                    &:after {
+                        content: " ";
+                        position: absolute;
+                        border-left: 2px solid $Lgray;
+                        top: 35%;
+                        right: 0;
+                        height: 45%;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                    }
+
+                    &:last-child {
+                        &::after {
+                            border: none;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .table_body {
+            tr {
+                .product_not_found {
+                    text-align: center;
+                    padding: 20px;
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: $gray;
+                }
+            }
+
+            tr {
+                border-bottom: 1.5px solid $Lgray;
+
+                &:first-child {
+                    border-top: 1.5px solid $Lgray;
+                }
+
+                .Image_wrap_main {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .Image_wrap {
+                        height: 60px;
+                        width: 60px;
+                        display: block;
+                        margin: 10px 0;
+
+                        img {
+                            display: block;
+                            object-fit: cover;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+
+                td {
+                    text-align: center;
+
+                    button {
+                        border: none;
+                        padding: 4px;
+                        border-radius: 4px;
+                        background-color: $primary;
+                        color: $white;
+                        font-size: 12px;
+                        cursor: pointer;
+                    }
+
+                    p {
+                        font-size: 14px;
+                        line-height: normal;
+                        font-weight: 500;
+                        color: $gray;
+                    }
+                }
+
+                .tripple_dot {
+                    position: relative;
+
+                    .tab_wrap {
+                        position: absolute;
+                        z-index: 9;
+                        padding: 16px;
+                        border-radius: 8px;
+                        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 10px;
+                        top: 50%;
+                        right: 53%;
+                        background-color: $white;
+
+                        p {
+                            font-size: 14px;
+                            font-weight: 500;
+                            color: $base;
+
+                            &:first-child {
+                                color: green;
+                            }
+
+                            &:last-child {
+                                color: red;
+                            }
+                        }
+
+                    }
+
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0px;
+                        cursor: pointer;
+
+                        span {
+                            font-size: 8px;
+                            line-height: 6px;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}

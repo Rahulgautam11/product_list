@@ -1,0 +1,26 @@
+@import '../../index.scss';
+
+.form_TextArea_container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 100%;
+
+    .label_input {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: normal;
+        color: $primary;
+
+    }
+
+    .form_input {
+        padding: 6px;
+        border: none;
+        border-bottom: 2px solid $primary;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

@@ -1,0 +1,87 @@
+@import '../../index.scss';
+
+.product_form_container {
+    padding: 20px;
+
+    .product_sub_container {
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+
+        .product_left_form {
+            display: flex;
+            flex-grow: 3;
+            flex-direction: column;
+            gap: 20px;
+
+            .information_pannel {
+                padding: 15px;
+                background-color: $white;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                border-radius: 12px;
+            }
+        }
+
+        .product_right_form {
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            gap: 20px;
+
+            .visibility_wrap {
+                padding: 15px;
+                background-color: $white;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                border-radius: 12px;
+
+                .wrap_Heading {
+                    font-size: 26px;
+                    font-weight: 600;
+                    line-height: normal;
+                    color: $primary;
+                    margin-bottom: 20px;
+                }
+
+                .label_wrap {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    label {
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: normal;
+                        color: $base;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .button_wrap {
+        padding: 20px;
+        margin-top: 30px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        display: flex;
+        justify-content: center;
+
+        button {
+            padding: 10px 42px;
+            border: 1px solid $primary;
+            background-color: $white;
+            color: $primary;
+            border-radius: 8px;
+            transition: all 0.6s;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+
+            &:hover {
+                transition: all 0.6s;
+                background-color: $primary;
+                color: $white;
+            }
+        }
+    }
+}
