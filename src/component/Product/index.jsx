@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import FormInput from '../../common/FormInput'
 import { useDispatch, useSelector } from 'react-redux'
-import { ProductState } from '../../redux/actions'
+import { ProductState, updatevalue } from '../../redux/actions'
 import './style.scss'
 import TextArea from '../../common/TextArea'
 import Dropdown from '../DropDown'
 
 const ProducForm = () => {
-
     let data =
     {
         image: "",
@@ -21,21 +20,17 @@ const ProducForm = () => {
     }
 
     const dispatch = useDispatch()
-    const [storedata, setstoredata] = useState([])
     const [inputValue, setInputValue] = useState(data)
 
-    const { Updatevalue, _id, isCheck, isfalse } = useSelector((state) => {
+    const { Updatevalue } = useSelector((state) => {
         return {
-            Updatevalue: state.ProductReducer.product.data,
-            _id: state.ProductReducer.updateId,
-            isCheck: state.ProductReducer.condition,
-            isfalse: state.ProductReducer.conditionfalse
+            Updatevalue: state.ProductReducer.updateData,
+
         }
     })
 
-
     useEffect(() => {
-        if (isCheck) {
+        if (Object.keys(Updatevalue).length != 0) {
             setInputValue(Updatevalue)
         }
     }, [Updatevalue])
@@ -65,41 +60,27 @@ const ProducForm = () => {
     }
 
     const Handlesubmit = () => {
-        if (inputValue.product === "" || inputValue.category === "" || inputValue.product === "" || inputValue.price === "" || inputValue.status === "") {
-            alert("invalid request")
-        } else {
-            setstoredata(pre => [...pre, inputValue])
-            setInputValue(data)
-
+        if (inputValue.product === "") {
+            alert("product value empty")
+        } else if (inputValue.category === "") {
+            alert("category value empty")
+        } else if (inputValue.price === "") {
+            alert("price value empty")
+        } else if (inputValue.status === "") {
+            alert("status value empty")
+        } else if (inputValue.slug === "") {
+            alert("slug value empty")
         }
-
+        else {
+            dispatch(ProductState(inputValue))
+            setInputValue(data)
+        }
     }
-
+    console.log(inputValue, "inputValue")
     const handleUpdate = () => {
-        isfalse(false)
-        storedata.splice(_id, 1,
-            {
-                image: inputValue.image,
-                product: inputValue.product,
-                category: inputValue.category,
-                price: inputValue.price,
-                status: inputValue.status,
-                slug: inputValue.slug,
-                tittle: inputValue.tittle,
-                description: inputValue.description,
-
-            }
-        )
-
-        dispatch(ProductState(storedata))
+        dispatch(updatevalue(inputValue))
         setInputValue(data)
-
     }
-
-
-    useEffect(() => {
-        dispatch(ProductState(storedata))
-    }, [storedata])
 
     const categorydata = [
         'Casual',
@@ -112,7 +93,6 @@ const ProducForm = () => {
                 <div className="product_left_form">
                     <div className="information_pannel">
                         <input type="file" accept="image/*" onChange={handleImageUpload} />
-
                         <FormInput
                             label={"Name"}
                             placeholder={"product Name"}
@@ -123,12 +103,13 @@ const ProducForm = () => {
 
                         <FormInput
                             type={"number"}
-                            label={"Name"}
+                            label={"Price"}
                             placeholder={"product Price"}
                             name="price"
                             onChange={HandleInput}
                             value={inputValue.price}
                         />
+
                         <FormInput
                             label={"Slug"}
                             placeholder={"product Slug"}
@@ -136,6 +117,7 @@ const ProducForm = () => {
                             onChange={HandleInput}
                             value={inputValue.slug}
                         />
+
                         <FormInput
                             label={"Tittle"}
                             placeholder={"product Tittle"}
@@ -143,6 +125,7 @@ const ProducForm = () => {
                             onChange={HandleInput}
                             value={inputValue.tittle}
                         />
+
                         <TextArea
                             rows={2}
                             label={"Description"}
@@ -151,6 +134,7 @@ const ProducForm = () => {
                             onChange={HandleInput}
                             value={inputValue.description}
                         />
+
 
                     </div>
                 </div>
@@ -167,19 +151,23 @@ const ProducForm = () => {
                                 Inactive
                             </label>
                         </div>
+
                     </div>
                     <div className="visibility_wrap">
                         <h3 className='wrap_Heading'>Category</h3>
                         <Dropdown inputValue={inputValue} setInputValue={setInputValue} options={categorydata} />
+
                     </div>
                 </div>
             </div>
             <div className="button_wrap">
                 {
-                    isCheck ?
+                    Object.keys(Updatevalue).length != 0 ?
                         <button onClick={() => handleUpdate()}>update</button> :
                         <button onClick={() => Handlesubmit()}>Submit</button>
                 }
+
+
             </div>
         </div>
     )

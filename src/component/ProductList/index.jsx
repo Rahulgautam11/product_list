@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './style.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { UpdateState, stateFalse, statecheck, updateId } from '../../redux/actions';
+import { DeleteProduct, ProductState, UpdateState, stateFalse, statecheck, updateId } from '../../redux/actions';
 import ProducForm from '../Product';
 import OutsideClickHandler from '../../common/OutsideClick';
 
@@ -16,6 +16,7 @@ const ProductList = () => {
         }
     })
 
+    console.log("ProductList....", ProductList);
     const closeDropdown = () => {
         setTabActive(false);
     };
@@ -26,37 +27,15 @@ const ProductList = () => {
         setData(ProductList)
     }, [ProductList])
 
-    const [dataUpdate, setDataUpdate] = useState()
-    const [isEdit, setEdit] = useState(false)
-
-    const HandleUpdate = (item, key) => {
-        setDataUpdate(item)
-        setEdit(true);
-        setkeyId(key)
+    const HandleUpdate = (item) => {
+        dispatch(UpdateState(item))
 
     }
     const HandleDelete = (item) => {
-        let result = Data.filter((elm) => elm != item)
-        setData(result)
+        dispatch(DeleteProduct(item))
+
     }
 
-    useEffect(() => {
-        dispatch(stateFalse(setEdit))
-    }, [setEdit])
-
-    useEffect(() => {
-        dispatch(statecheck(isEdit))
-    }, [isEdit])
-
-    useEffect(() => {
-        dispatch(updateId(keyId))
-    }, [keyId])
-
-    useEffect(() => {
-        dispatch(UpdateState(dataUpdate))
-    }, [dataUpdate])
-
-    console.log(Data, "Data")
     return (
         <div className='Productlist_main'>
 
@@ -93,12 +72,12 @@ const ProductList = () => {
                                                 <span>&#9679;</span>
                                             </div>
                                             {TabActive === key &&
-                                                <OutsideClickHandler onOutsideClick={closeDropdown}>
-                                                    <div className="tab_wrap">
-                                                        <p onClick={() => HandleUpdate(item, key)}>Edit</p>
+                                                <div className="tab_wrap">
+                                                    <OutsideClickHandler onOutsideClick={closeDropdown}>
+                                                        <p onClick={() => HandleUpdate(item)}>Edit</p>
                                                         <p onClick={() => HandleDelete(item)}>Delete</p>
-                                                    </div>
-                                                </OutsideClickHandler>
+                                                    </OutsideClickHandler>
+                                                </div>
                                             }
                                         </td>
                                     </tr>

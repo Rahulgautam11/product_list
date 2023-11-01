@@ -7,6 +7,13 @@ export const ProductState = (data) => (dispatch) => {
     })
 
 }
+export const DeleteProduct = (data) => (dispatch) => {
+
+    dispatch({
+        type: 'PRODUCT_DELETE',
+        payload: data
+    })
+}
 export const UpdateState = (data) => (dispatch) => {
     dispatch({
         type: 'PRODUCT_UPDATE_STATE',
@@ -14,25 +21,39 @@ export const UpdateState = (data) => (dispatch) => {
 
     })
 }
-export const updateId = (_id) => (dispatch) => {
+export const updatevalue = (data) => (dispatch) => {
     dispatch({
-        type: 'PRODUCT_ID',
-        payload: _id,
-
+        type: "VALUE_UPDATE",
+        payload: data
     })
-}
-export const statecheck = (condition) => (dispatch) => {
     dispatch({
-        type: 'STATE_CHECK',
-        payload: condition,
+        type: 'PRODUCT_UPDATE_STATE',
+        payload: {},
 
     })
 }
 
-export const stateFalse = (stateFalse) => (dispatch) => {
-    dispatch({
-        type: 'STATE_False',
-        payload: stateFalse,
 
-    })
-}
+
+// export const updateId = (_id) => (dispatch) => {
+//     dispatch({
+//         type: 'PRODUCT_ID',
+//         payload: _id,
+
+//     })
+// }
+// export const statecheck = (condition) => (dispatch) => {
+//     dispatch({
+//         type: 'STATE_CHECK',
+//         payload: condition,
+
+//     })
+// }
+
+// export const stateFalse = (stateFalse) => (dispatch) => {
+//     dispatch({
+//         type: 'STATE_False',
+//         payload: stateFalse,
+
+//     })
+// }
