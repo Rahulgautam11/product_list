@@ -60,14 +60,17 @@ const ProducForm = () => {
     }
 
     const Handlesubmit = () => {
-        if (inputValue.product === "") {
+        if (inputValue.product === "" && inputValue.category === "" && inputValue.price === "" && inputValue.status === "" && inputValue.slug === "") {
+            alert("invalid request")
+        }
+        else if (inputValue.product === "") {
             alert("product value empty")
         } else if (inputValue.category === "") {
             alert("category value empty")
         } else if (inputValue.price === "") {
             alert("price value empty")
         } else if (inputValue.status === "") {
-            alert("status value empty")
+            alert("Visibility value empty")
         } else if (inputValue.slug === "") {
             alert("slug value empty")
         }
